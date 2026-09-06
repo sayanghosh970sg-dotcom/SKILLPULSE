@@ -14,6 +14,7 @@ export default function Navbar() {
     { name: 'Skill Intelligence', href: '/skill-intelligence' },
     { name: 'Skill Gap Analyzer', href: '/skill-gap-analyzer' },
     { name: 'Practice', href: '/practice' },
+    { name: 'Courses', href: '/courses' },
     { name: 'Career Roadmap', href: '/career-roadmap' },
     { name: 'Training & Curriculum', href: '/training-curriculum' },
     { name: 'Government', href: '/government' },

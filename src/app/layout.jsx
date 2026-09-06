@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { PulseAIFloatingButton } from '../components/pulseai';
 import './globals.css';
 
 export const metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <PulseAIFloatingButton />
       </body>
     </html>
   );

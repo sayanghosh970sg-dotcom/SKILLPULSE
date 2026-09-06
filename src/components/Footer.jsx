@@ -36,6 +36,7 @@ export default function Footer() {
               <li><Link href="/skill-gap-analyzer" className="hover:text-cyan-400 transition-colors">Skill Gap Analyzer</Link></li>
               <li><Link href="/practice" className="hover:text-cyan-400 transition-colors">Company & Role Practice</Link></li>
               <li><Link href="/courses" className="hover:text-cyan-400 transition-colors">Courses & Learning Resources</Link></li>
+              <li><Link href="/experts" className="hover:text-cyan-400 transition-colors">Industry Mentors & Experts</Link></li>
               <li><Link href="/career-roadmap" className="hover:text-cyan-400 transition-colors">Career Roadmaps</Link></li>
               <li><Link href="/training-curriculum" className="hover:text-cyan-400 transition-colors">Curriculum Simulator</Link></li>
               <li><Link href="/government" className="hover:text-cyan-400 transition-colors">Regional Insights (States & Districts)</Link></li>

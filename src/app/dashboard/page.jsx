@@ -18,7 +18,8 @@ import {
   ArrowRight,
   Sparkles,
   Code2,
-  BookOpen
+  BookOpen,
+  Users
 } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -30,6 +31,7 @@ export default function DashboardPage() {
     { id: 'analyzer', name: 'Skill Gap Analyzer', icon: Target, href: '/skill-gap-analyzer' },
     { id: 'practice', name: 'Company Practice', icon: Code2, href: '/practice' },
     { id: 'courses', name: 'Learning Courses', icon: BookOpen, href: '/courses' },
+    { id: 'experts', name: 'Industry Mentors', icon: Users, href: '/experts' },
     { id: 'roadmap', name: 'Career Roadmap', icon: Compass, href: '/career-roadmap' },
     { id: 'curriculum', name: 'Curriculum Simulator', icon: GraduationCap, href: '/training-curriculum' },
     { id: 'reports', name: 'Reports & Downloads', icon: FileText },

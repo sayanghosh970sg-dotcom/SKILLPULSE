@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import AlignmentScore from '../../components/AlignmentScore';
 import ProgressBar from '../../components/ProgressBar';
+import DataSourceBadge from '../../components/DataSourceBadge';
 import { INITIAL_CURRICULUM, OPTIONAL_SIMULATOR_SKILLS } from '../../data/mockData';
 import { calculateCurriculumAlignment } from '../../lib/analytics';
 import {
@@ -15,7 +17,8 @@ import {
   BookOpen,
   ArrowRight,
   TrendingUp,
-  FileCode
+  FileCode,
+  Info
 } from 'lucide-react';
 
 export default function TrainingCurriculumPage() {
@@ -39,15 +42,18 @@ export default function TrainingCurriculumPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Page Header */}
       <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 text-xs font-semibold mb-2">
-          <GraduationCap className="w-3.5 h-3.5 text-cyan-600" />
-          <span>Institutional Curriculum Intelligence</span>
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-700 text-xs font-semibold">
+            <GraduationCap className="w-3.5 h-3.5 text-cyan-600" />
+            <span>Institutional Curriculum Intelligence</span>
+          </div>
+          <DataSourceBadge sourceId="demo_curriculum" />
         </div>
         <h1 className="text-3xl font-extrabold text-navy-800 tracking-tight">
-          Training & Curriculum Alignment
+          Training & Curriculum Alignment Simulator
         </h1>
         <p className="text-sm text-slate-500 mt-1 max-w-2xl">
-          Audit university and vocational curricula against real-time industry demands and run live simulations to optimize placement outcomes.
+          Audit university and vocational curricula against industry demands and run live simulations to test modern competency additions.
         </p>
       </div>
 
@@ -60,7 +66,7 @@ export default function TrainingCurriculumPage() {
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                  Target Evaluation Sample
+                  Sample Syllabus Sandbox
                 </span>
                 <h3 className="text-base font-bold text-navy-800">
                   B.Tech / Diploma in Computer Science & Tech
@@ -77,7 +83,7 @@ export default function TrainingCurriculumPage() {
                   <div className="flex items-center justify-between">
                     <h4 className="text-xs font-bold text-navy-800">{mod.name}</h4>
                     <span className="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold">
-                      Audited
+                      Sample Audited
                     </span>
                   </div>
                   <div className="mt-2 flex flex-wrap gap-1.5">
@@ -95,7 +101,7 @@ export default function TrainingCurriculumPage() {
             </div>
 
             <div className="p-3 bg-blue-50/60 border border-blue-200 rounded-xl text-xs text-blue-900 leading-relaxed">
-              💡 <strong>Observation:</strong> The base syllabus covers classical programming and databases well, but lacks modern cloud and visual analytics required by 68% of enterprise job postings.
+              💡 <strong>Diagnostic Observation:</strong> The base syllabus covers classical programming and databases well, but lacks modern cloud and visual analytics required by contemporary enterprise postings.
             </div>
           </div>
         </div>
@@ -107,7 +113,7 @@ export default function TrainingCurriculumPage() {
             <div className="sm:col-span-5 flex justify-center">
               <AlignmentScore
                 score={currentAlignment.alignmentScore}
-                subtitle="Industry Alignment Score"
+                subtitle="Curriculum Alignment Score"
               />
             </div>
             <div className="sm:col-span-7 space-y-3">
@@ -129,7 +135,7 @@ export default function TrainingCurriculumPage() {
               />
               <p className="text-xs text-slate-500 leading-relaxed">
                 {currentAlignment.alignmentScore >= 85
-                  ? 'Excellent alignment. Students graduating under this curriculum meet industry job requirements immediately.'
+                  ? 'High alignment. Graduates under this simulated structure possess modern proficiencies expected by active employers.'
                   : 'Actionable improvements identified. Incorporating missing competencies significantly elevates placement rates.'}
               </p>
             </div>
@@ -141,99 +147,62 @@ export default function TrainingCurriculumPage() {
               <div className="flex items-center gap-2">
                 <Sliders className="w-4 h-4 text-cyan-600" />
                 <h3 className="text-sm font-bold text-navy-800">
-                  Interactive Curriculum Simulator
+                  What-If Curriculum Simulator
                 </h3>
               </div>
-              <span className="text-[11px] text-slate-500 font-mono">
-                Click to add modules
+              <span className="text-[11px] font-semibold text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded">
+                Interactive Sandbox
               </span>
             </div>
-
             <p className="text-xs text-slate-500 mb-4">
-              Simulate the impact of modernizing the curriculum with emerging modules:
+              Toggle emerging module additions to simulate real-time impact on your institute's alignment score.
             </p>
 
             <div className="space-y-2.5">
-              {OPTIONAL_SIMULATOR_SKILLS.map((item) => {
-                const active = isSimulated(item.id);
-
+              {OPTIONAL_SIMULATOR_SKILLS.map((sk) => {
+                const active = isSimulated(sk.id);
                 return (
                   <div
-                    key={item.id}
-                    onClick={() => toggleSimulationSkill(item)}
+                    key={sk.id}
+                    onClick={() => toggleSimulationSkill(sk)}
                     className={`p-3.5 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${
                       active
-                        ? 'bg-cyan-50 border-cyan-300 ring-1 ring-cyan-400'
-                        : 'bg-slate-50 border-slate-200 hover:bg-slate-100/70'
+                        ? 'bg-cyan-50/80 border-cyan-300 ring-1 ring-cyan-400'
+                        : 'bg-slate-50 border-slate-200 hover:border-slate-300'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold ${
-                          active ? 'bg-cyan-600 text-white' : 'bg-slate-200 text-slate-600'
-                        }`}
-                      >
-                        {active ? '✓' : '+'}
-                      </div>
-                      <div>
-                        <span className="text-xs font-bold text-navy-800 block">
-                          {item.name}
-                        </span>
-                        <span className="text-[10px] text-slate-500">
-                          Priority: {item.priority}
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-navy-800">{sk.name}</span>
+                        <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">
+                          +{sk.boost}% Alignment
                         </span>
                       </div>
+                      <span className="text-[11px] text-slate-500 mt-0.5 block">
+                        Category: {sk.category}
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono font-bold text-emerald-600">
-                        +{item.boost}% Score
-                      </span>
-                      <span
-                        className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full ${
-                          active ? 'bg-cyan-600 text-white' : 'bg-slate-200 text-slate-600'
-                        }`}
-                      >
-                        {active ? 'Included' : 'Add to Test'}
-                      </span>
-                    </div>
+                    <button
+                      type="button"
+                      className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold transition-colors ${
+                        active
+                          ? 'bg-cyan-600 text-white'
+                          : 'bg-white border border-slate-300 text-slate-500'
+                      }`}
+                    >
+                      {active ? '✓' : '+'}
+                    </button>
                   </div>
                 );
               })}
             </div>
 
-            {/* Simulation Impact Visualizer */}
-            <div className="mt-5 p-4 rounded-xl bg-slate-900 text-white space-y-2">
-              <div className="flex justify-between items-center text-xs font-semibold">
-                <span className="text-slate-400">Baseline Alignment: 75%</span>
-                <span className="text-cyan-400">Simulated Outcome: {currentAlignment.alignmentScore}%</span>
-              </div>
-              <div className="flex items-center gap-3 text-xs text-slate-300">
-                <span>Modules Added: {simulatedSkills.length}</span>
-                <span>•</span>
-                <span>Placement Readiness: {currentAlignment.alignmentScore >= 85 ? 'Optimal (85%+)' : 'Improving'}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Missing Core Skills Audit */}
-          <div className="card-subtle p-5 rounded-2xl bg-white border border-slate-200">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-navy-800 mb-3">
-              Industry Benchmark Status
-            </h4>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              {currentAlignment.coveredSkills.map((sk, i) => (
-                <div key={i} className="flex items-center gap-1.5 text-emerald-700">
-                  <CheckCircle className="w-3.5 h-3.5 shrink-0" />
-                  <span className="font-semibold">{sk} (Covered)</span>
-                </div>
-              ))}
-              {currentAlignment.missingSkills.map((sk, i) => (
-                <div key={i} className="flex items-center gap-1.5 text-rose-600">
-                  <XCircle className="w-3.5 h-3.5 shrink-0" />
-                  <span>{sk} (Uncovered)</span>
-                </div>
-              ))}
+            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+              <span>Simulation mode • No database changes</span>
+              <Link href="/data-sources" className="text-primary-600 hover:underline">
+                Methodology →
+              </Link>
             </div>
           </div>
         </div>

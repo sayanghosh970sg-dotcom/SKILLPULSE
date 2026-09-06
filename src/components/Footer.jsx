@@ -36,7 +36,8 @@ export default function Footer() {
               <li><Link href="/skill-gap-analyzer" className="hover:text-cyan-400 transition-colors">Skill Gap Analyzer</Link></li>
               <li><Link href="/career-roadmap" className="hover:text-cyan-400 transition-colors">Career Roadmaps</Link></li>
               <li><Link href="/training-curriculum" className="hover:text-cyan-400 transition-colors">Curriculum Simulator</Link></li>
-              <li><Link href="/government" className="hover:text-cyan-400 transition-colors">Regional Insights (Maharashtra)</Link></li>
+              <li><Link href="/government" className="hover:text-cyan-400 transition-colors">Regional Insights (States & Districts)</Link></li>
+              <li><Link href="/data-sources" className="hover:text-cyan-400 transition-colors text-cyan-300 font-medium">Data Sources & Methodology</Link></li>
             </ul>
           </div>
 
@@ -64,7 +65,7 @@ export default function Footer() {
             <div className="space-y-1 text-xs text-slate-400">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-primary-400" />
-                <span>Mumbai / Pune Innovation Corridor</span>
+                <span>Pan-India Coverage (MSDE, SIDH, NCS, MoSPI)</span>
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="w-3.5 h-3.5 text-cyan-400" />
@@ -79,7 +80,9 @@ export default function Footer() {
           <p className="flex gap-4">
             <span className="hover:text-slate-400 cursor-pointer">Privacy Policy</span>
             <span className="hover:text-slate-400 cursor-pointer">Terms of Service</span>
-            <span className="hover:text-slate-400 cursor-pointer">Open Skill Data</span>
+            <Link href="/data-sources" className="hover:text-cyan-400 transition-colors">
+              Data Sources & Methodology
+            </Link>
           </p>
         </div>
       </div>

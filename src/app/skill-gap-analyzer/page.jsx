@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import AlignmentScore from '../../components/AlignmentScore';
 import SkillGapCard from '../../components/SkillGapCard';
 import ProgressBar from '../../components/ProgressBar';
+import DataSourceBadge from '../../components/DataSourceBadge';
 import { JOB_ROLES } from '../../data/mockData';
 import { calculateSkillGap } from '../../lib/analytics';
 import {
@@ -14,7 +16,8 @@ import {
   BookOpen,
   Sparkles,
   Plus,
-  X
+  X,
+  Info
 } from 'lucide-react';
 
 export default function SkillGapAnalyzerPage() {
@@ -30,7 +33,6 @@ export default function SkillGapAnalyzerPage() {
 
   const handleRoleChange = (roleId) => {
     setSelectedRoleId(roleId);
-    // Recalculate with existing user skills
     const res = calculateSkillGap(roleId, userSkills);
     setAnalysisResult(res);
   };
@@ -62,20 +64,24 @@ export default function SkillGapAnalyzerPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-      {/* Page Header */}
+      {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary-200 text-primary-700 text-xs font-semibold mb-2">
-          <Target className="w-3.5 h-3.5 text-primary-600" />
-          <span>Interactive Diagnostic Engine</span>
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-xs font-semibold">
+            <Target className="w-3.5 h-3.5 text-cyan-600" />
+            <span>Diagnostic Readiness Evaluation</span>
+          </div>
+          <DataSourceBadge sourceId="skillpulse_gap_engine" />
         </div>
         <h1 className="text-3xl font-extrabold text-navy-800 tracking-tight">
-          Skill Gap Analyzer
+          Individual Skill Gap Analyzer
         </h1>
         <p className="text-sm text-slate-500 mt-1 max-w-2xl">
-          Compare your current technical competencies against current industry role requirements and generate a personalized readiness roadmap.
+          Benchmark your competencies against verified industry role profiles. Identify critical missing proficiencies and generate an actionable learning pathway.
         </p>
       </div>
 
+      {/* Main Interactive Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Input Selection (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
@@ -139,33 +145,34 @@ export default function SkillGapAnalyzerPage() {
                   value={customSkillInput}
                   onChange={(e) => setCustomSkillInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleAddSkill(customSkillInput)}
-                  className="flex-1 text-xs border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  className="flex-1 text-xs font-medium border border-slate-300 rounded-xl px-3 py-2 bg-white text-navy-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
                 <button
-                  type="button"
                   onClick={() => handleAddSkill(customSkillInput)}
-                  className="px-3 py-2 bg-slate-800 text-white rounded-lg text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center gap-1"
+                  className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors flex items-center gap-1"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Add</span>
                 </button>
               </div>
 
-              {/* Quick Suggestions from Target Role */}
+              {/* Quick Suggest from Role */}
               <div className="mt-3">
-                <span className="text-[11px] font-semibold text-slate-500 block mb-1.5">
-                  Suggested for {selectedRole.title}:
+                <span className="text-[11px] text-slate-400 block mb-1.5 font-medium">
+                  Quick add from target role requirements:
                 </span>
                 <div className="flex flex-wrap gap-1.5">
-                  {selectedRole.requiredSkills.map((req, i) => (
-                    <button
-                      key={i}
-                      onClick={() => handleAddSkill(req.name)}
-                      className="text-[11px] font-medium px-2 py-0.5 rounded bg-slate-100 hover:bg-primary-50 hover:text-primary-700 text-slate-600 transition-colors"
-                    >
-                      + {req.name}
-                    </button>
-                  ))}
+                  {selectedRole.requiredSkills
+                    .filter(req => !userSkills.some(u => u.toLowerCase() === req.name.toLowerCase()))
+                    .map((s, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleAddSkill(s.name)}
+                        className="text-[11px] px-2 py-1 rounded-md bg-slate-100 hover:bg-primary-50 hover:text-primary-700 text-slate-600 border border-slate-200 transition-colors"
+                      >
+                        + {s.name}
+                      </button>
+                    ))}
                 </div>
               </div>
             </div>
@@ -179,6 +186,17 @@ export default function SkillGapAnalyzerPage() {
               <span>{isAnalyzing ? 'Analyzing Alignment...' : 'Analyze My Skill Gap'}</span>
             </button>
           </div>
+
+          {/* Methodology Caveat Note */}
+          <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-amber-900 space-y-1">
+            <div className="flex items-center gap-1.5 font-bold">
+              <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
+              <span>Diagnostic Indicator Caveat</span>
+            </div>
+            <p className="text-[11px] leading-relaxed text-amber-800">
+              The SkillPulse Readiness Score is an educational diagnostic index calculated from self-reported skills against role profile matrices. It does not represent an official government certification or guaranteed hiring decision.
+            </p>
+          </div>
         </div>
 
         {/* Right Column: Analysis Output (7 cols) */}
@@ -188,7 +206,7 @@ export default function SkillGapAnalyzerPage() {
             <div className="sm:col-span-5 flex justify-center">
               <AlignmentScore
                 score={analysisResult.readinessScore}
-                subtitle="Job Readiness Score"
+                subtitle="SkillPulse Readiness Score"
               />
             </div>
             <div className="sm:col-span-7 space-y-3">
@@ -240,34 +258,47 @@ export default function SkillGapAnalyzerPage() {
               <div className="flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-primary-600" />
                 <h3 className="text-sm font-bold text-navy-800">
-                  Recommended Learning Path to 100% Readiness
+                  Recommended Learning Milestones
                 </h3>
               </div>
-              <span className="text-xs font-semibold text-primary-600">
-                {analysisResult.learningPath.length} Milestones
-              </span>
+              <Link
+                href="/career-roadmap"
+                className="text-xs font-semibold text-primary-600 hover:text-primary-700 inline-flex items-center gap-1"
+              >
+                Full Roadmap <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
 
             <div className="space-y-3">
-              {analysisResult.learningPath.map((item, idx) => (
+              {analysisResult.learningPath.map((step, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3.5"
+                  className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3.5"
                 >
-                  <div className="w-7 h-7 rounded-full bg-primary-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    {item.step}
+                  <div className="w-7 h-7 rounded-full bg-primary-100 text-primary-700 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                    {idx + 1}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xs font-bold text-navy-800">{item.title}</h4>
+                      <h4 className="text-xs font-bold text-navy-800">
+                        {step.skill}
+                      </h4>
                       <span className="text-[10px] font-mono text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200">
-                        {item.estimatedWeeks}
+                        Est: {step.estWeeks} Weeks
                       </span>
                     </div>
-                    <p className="text-xs text-slate-600 mt-1">{item.action}</p>
+                    <p className="text-xs text-slate-600 mt-1">
+                      {step.action}
+                    </p>
                   </div>
                 </div>
               ))}
+
+              {analysisResult.learningPath.length === 0 && (
+                <div className="text-center py-6 text-emerald-600 text-xs font-semibold">
+                  ✓ Outstanding! You already cover all mandatory competencies for this role.
+                </div>
+              )}
             </div>
           </div>
         </div>

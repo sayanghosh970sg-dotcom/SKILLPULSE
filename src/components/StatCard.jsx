@@ -1,6 +1,17 @@
 import React from 'react';
+import DataSourceBadge from './DataSourceBadge';
 
-export default function StatCard({ title, value, change, icon: Icon, description, trend = 'neutral' }) {
+export default function StatCard({
+  title,
+  value,
+  change,
+  icon: Icon,
+  description,
+  trend = 'neutral',
+  sourceId = null,
+  customSource = null,
+  sourceLabel = null
+}) {
   const getTrendBadge = () => {
     if (!change) return null;
     const isPositive = change.startsWith('+');
@@ -18,27 +29,43 @@ export default function StatCard({ title, value, change, icon: Icon, description
   };
 
   return (
-    <div className="card-subtle p-5 bg-white border border-slate-200 rounded-xl relative overflow-hidden">
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-          {title}
-        </span>
-        {Icon && (
-          <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
-            <Icon className="w-5 h-5" />
-          </div>
+    <div className="card-subtle p-5 bg-white border border-slate-200 rounded-xl relative overflow-hidden flex flex-col justify-between">
+      <div>
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+            {title}
+          </span>
+          {Icon && (
+            <div className="p-2 rounded-lg bg-primary-50 text-primary-600">
+              <Icon className="w-5 h-5" />
+            </div>
+          )}
+        </div>
+        <div className="mt-3 flex items-baseline gap-2">
+          <span className="text-2xl sm:text-3xl font-bold tracking-tight text-navy-800">
+            {value}
+          </span>
+          {getTrendBadge()}
+        </div>
+        {description && (
+          <p className="mt-1.5 text-xs text-slate-500 line-clamp-2">
+            {description}
+          </p>
         )}
       </div>
-      <div className="mt-3 flex items-baseline gap-2">
-        <span className="text-2xl sm:text-3xl font-bold tracking-tight text-navy-800">
-          {value}
-        </span>
-        {getTrendBadge()}
-      </div>
-      {description && (
-        <p className="mt-1.5 text-xs text-slate-500 line-clamp-2">
-          {description}
-        </p>
+
+      {(sourceId || customSource || sourceLabel) && (
+        <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[10px]">
+          {sourceId || customSource ? (
+            <DataSourceBadge
+              sourceId={sourceId}
+              customSource={customSource}
+              showFreshness={true}
+            />
+          ) : (
+            <span className="text-slate-400 font-medium">{sourceLabel}</span>
+          )}
+        </div>
       )}
     </div>
   );

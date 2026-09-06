@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import DataSourceBadge from '../../components/DataSourceBadge';
 import { JOB_ROLES } from '../../data/mockData';
 import {
   Compass,
@@ -35,9 +36,12 @@ export default function CareerRoadmapPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary-200 text-primary-700 text-xs font-semibold mb-2">
-          <Compass className="w-3.5 h-3.5 text-primary-600" />
-          <span>Milestone-Driven Learning Engine</span>
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary-200 text-primary-700 text-xs font-semibold">
+            <Compass className="w-3.5 h-3.5 text-primary-600" />
+            <span>Milestone-Driven Learning Engine</span>
+          </div>
+          <DataSourceBadge sourceId="skillpulse_gap_engine" />
         </div>
         <h1 className="text-3xl font-extrabold text-navy-800 tracking-tight">
           Career Roadmaps

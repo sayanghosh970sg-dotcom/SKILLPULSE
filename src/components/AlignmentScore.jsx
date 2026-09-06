@@ -1,6 +1,13 @@
 import React from 'react';
+import DataSourceBadge from './DataSourceBadge';
 
-export default function AlignmentScore({ score = 0, size = 'lg', subtitle = 'Industry Alignment' }) {
+export default function AlignmentScore({
+  score = 0,
+  size = 'lg',
+  subtitle = 'Industry Alignment',
+  sourceId = 'skillpulse_analysis',
+  methodologyNote = 'Calculated by SkillPulse'
+}) {
   const getScoreColor = () => {
     if (score >= 80) return { ring: 'text-emerald-500', bg: 'bg-emerald-50', text: 'text-emerald-700', label: 'High Alignment' };
     if (score >= 60) return { ring: 'text-amber-500', bg: 'bg-amber-50', text: 'text-amber-700', label: 'Moderate Alignment' };
@@ -12,7 +19,6 @@ export default function AlignmentScore({ score = 0, size = 'lg', subtitle = 'Ind
   return (
     <div className="flex flex-col items-center justify-center p-6 bg-white border border-slate-200 rounded-2xl shadow-sm text-center">
       <div className="relative flex items-center justify-center">
-        {/* SVG Circular Ring */}
         <svg className="w-32 h-32 transform -rotate-90">
           <circle
             cx="64"
@@ -47,6 +53,17 @@ export default function AlignmentScore({ score = 0, size = 'lg', subtitle = 'Ind
         <span className={`inline-block mt-1 text-xs font-semibold px-2.5 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
           {colors.label}
         </span>
+      </div>
+
+      <div className="mt-3 pt-2.5 border-t border-slate-100 w-full flex flex-col items-center gap-1 text-center">
+        <span className="text-[10px] text-slate-500 font-medium">
+          {methodologyNote}
+        </span>
+        <DataSourceBadge
+          sourceId={sourceId}
+          showFreshness={false}
+          className="justify-center"
+        />
       </div>
     </div>
   );

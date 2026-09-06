@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Hero from '../components/Hero';
 import StatCard from '../components/StatCard';
 import SkillCard from '../components/SkillCard';
+import DataSourceBadge from '../components/DataSourceBadge';
 import { SKILL_DEMAND_DATA, EMERGING_SKILLS, JOB_ROLES } from '../data/mockData';
 import {
   Briefcase,
@@ -31,32 +32,36 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
-            title="Job Requirements Analyzed"
-            value="12,500+"
-            change="+14% this month"
-            icon={Briefcase}
-            description="Continuous crawling across tech, BFSI, manufacturing & healthcare."
-          />
-          <StatCard
-            title="Skills Tracked in Real-Time"
-            value="850+"
-            change="+42 new"
-            icon={Layers}
-            description="Normalized competencies mapped to occupational standards."
-          />
-          <StatCard
-            title="Training Programs Evaluated"
-            value="120+"
-            change="+18 verified"
+            title="Registered ITI Infrastructure"
+            value="14,950+"
+            change="Official DGT Census"
             icon={GraduationCap}
-            description="University & vocational curricula audited for market relevance."
+            description="Total operational Industrial Training Institutes registered under DGT across Indian states."
+            sourceId="msde_iti"
           />
           <StatCard
-            title="Average Alignment Score"
-            value="78%"
-            change="+6% YoY"
+            title="PMKVY Certified Candidates"
+            value="1.42 Cr+"
+            change="All-India Cumulative"
+            icon={Users}
+            description="Cumulative candidates certified under PMKVY short-term training & RPL programs."
+            sourceId="msde_pmkvy"
+          />
+          <StatCard
+            title="Active National Vacancies"
+            value="18.4L+"
+            change="NCS Portal Data"
+            icon={Briefcase}
+            description="Live requisitions mobilized by registered employers on the National Career Service portal."
+            sourceId="ncs_portal"
+          />
+          <StatCard
+            title="Youth Formal Skilling Ratio"
+            value="5.8%"
+            change="PLFS Benchmark"
             icon={Percent}
-            description="Industry baseline readiness index across active batches."
+            description="Proportion of youth (15-29) having received formal vocational/technical skilling."
+            sourceId="plfs_mospi"
           />
         </div>
       </section>
@@ -134,13 +139,13 @@ export default function Home() {
             </div>
             <h3 className="text-base font-bold text-navy-800">For Government & Policy</h3>
             <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-              Identify district-level skill shortages (e.g. Pune, Mumbai, Nagpur) to optimize training budget allocations.
+              Identify state and district-level skill deficits (Maharashtra, Karnataka, Tamil Nadu, etc.) to optimize training budget allocations.
             </p>
             <Link
               href="/government"
               className="inline-flex items-center gap-1 text-xs font-bold text-purple-600 mt-4 hover:gap-2 transition-all"
             >
-              View District Heatmaps <ArrowRight className="w-3.5 h-3.5" />
+              View Regional Insights <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
@@ -151,9 +156,12 @@ export default function Home() {
         <div className="bg-gradient-to-r from-navy-900 to-navy-800 rounded-3xl p-8 sm:p-12 text-white shadow-xl">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-semibold mb-2">
-                <Zap className="w-3.5 h-3.5" />
-                <span>Real-Time Market Pulse</span>
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-semibold">
+                  <Zap className="w-3.5 h-3.5" />
+                  <span>Real-Time Market Pulse</span>
+                </div>
+                <DataSourceBadge sourceId="skillpulse_analysis" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
                 Top Emerging Skills in Today's Market

@@ -87,10 +87,10 @@ export default function Hero() {
                   <div className="flex-1 min-w-0">
                     <div className="text-xs font-bold text-navy-800 flex items-center justify-between">
                       <span>Industry Demand</span>
-                      <span className="text-[10px] text-primary-600 font-mono">12,500+ Jobs</span>
+                      <span className="text-[10px] text-primary-600 font-mono">18.4L+ NCS Requisitions</span>
                     </div>
                     <p className="text-[11px] text-slate-500 truncate">
-                      Real-time market analytics, vacancy spikes & emerging roles
+                      National Career Service portal vacancies & active employer requisitions
                     </p>
                   </div>
                 </div>
@@ -106,11 +106,11 @@ export default function Hero() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-xs font-bold text-navy-800 flex items-center justify-between">
-                      <span>Required Skills Extraction</span>
-                      <span className="text-[10px] text-primary-600 font-mono">850+ Tracked</span>
+                      <span>Required Skills Standards</span>
+                      <span className="text-[10px] text-primary-600 font-mono">NOS Standards</span>
                     </div>
                     <p className="text-[11px] text-slate-500 truncate">
-                      Categorized into High, Medium, and Emerging competencies
+                      Mapped to National Occupational Standards (NOS) & Sector Skill Councils
                     </p>
                   </div>
                 </div>
@@ -126,11 +126,11 @@ export default function Hero() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-xs font-bold text-navy-800 flex items-center justify-between">
-                      <span>Training & Curriculum</span>
-                      <span className="text-[10px] text-cyan-600 font-mono">120+ Programs</span>
+                      <span>Vocational Infrastructure</span>
+                      <span className="text-[10px] text-cyan-600 font-mono">14,950+ ITIs</span>
                     </div>
                     <p className="text-[11px] text-slate-500 truncate">
-                      Institutes align modules to industry standard profiles
+                      DGT/MSDE registered training institutes & PMKVY skill centers
                     </p>
                   </div>
                 </div>
@@ -140,17 +140,17 @@ export default function Hero() {
                 </div>
 
                 {/* Stage 4 */}
-                <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-3.5">
+                <div className="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80 flex items-center gap-3.5">
                   <div className="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shrink-0">
                     04
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-emerald-900 flex items-center justify-between">
-                      <span>Job Readiness Verified</span>
-                      <span className="text-[10px] text-emerald-700 font-mono font-bold">78% Avg Align</span>
+                    <div className="text-xs font-bold text-navy-800 flex items-center justify-between">
+                      <span>Job Readiness Diagnostic</span>
+                      <span className="text-[10px] text-emerald-700 font-mono">SkillPulse Engine</span>
                     </div>
-                    <p className="text-[11px] text-emerald-700 truncate">
-                      Target role readiness score & guaranteed industry fit
+                    <p className="text-[11px] text-slate-500 truncate">
+                      Calculated diagnostic gap score & recommended learning milestones
                     </p>
                   </div>
                 </div>

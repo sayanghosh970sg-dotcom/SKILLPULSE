@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
+import DataSourceBadge from '../../components/DataSourceBadge';
 import { Building2, Plus, Check, Briefcase, MapPin, Layers, Sparkles } from 'lucide-react';
 
 export default function EmployerPage() {
   const [roleTitle, setRoleTitle] = useState('Data Analyst');
   const [experience, setExperience] = useState('0-2 years');
-  const [location, setLocation] = useState('Pune');
+  const [location, setLocation] = useState('Bengaluru / Pune');
   const [selectedSkills, setSelectedSkills] = useState(['Python', 'SQL', 'Excel', 'Power BI', 'Statistics']);
   const [newSkill, setNewSkill] = useState('');
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -33,9 +34,12 @@ export default function EmployerPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold mb-2">
-          <Building2 className="w-3.5 h-3.5 text-emerald-600" />
-          <span>Employer Talent Specification</span>
+        <div className="flex flex-wrap items-center gap-2 mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">
+            <Building2 className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Employer Talent Specification</span>
+          </div>
+          <DataSourceBadge sourceId="demo_curriculum" />
         </div>
         <h1 className="text-3xl font-extrabold text-navy-800 tracking-tight">
           Industry Skill Requirement Profile

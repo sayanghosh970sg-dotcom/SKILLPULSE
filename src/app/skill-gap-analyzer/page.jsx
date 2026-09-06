@@ -17,7 +17,8 @@ import {
   Sparkles,
   Plus,
   X,
-  Info
+  Info,
+  Code2
 } from 'lucide-react';
 
 export default function SkillGapAnalyzerPage() {
@@ -261,12 +262,21 @@ export default function SkillGapAnalyzerPage() {
                   Recommended Learning Milestones
                 </h3>
               </div>
-              <Link
-                href="/career-roadmap"
-                className="text-xs font-semibold text-primary-600 hover:text-primary-700 inline-flex items-center gap-1"
-              >
-                Full Roadmap <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/practice"
+                  className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 hover:bg-emerald-100 transition-colors inline-flex items-center gap-1"
+                >
+                  <Code2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Practice Questions</span>
+                </Link>
+                <Link
+                  href="/career-roadmap"
+                  className="text-xs font-semibold text-primary-600 hover:text-primary-700 inline-flex items-center gap-1"
+                >
+                  Full Roadmap <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             </div>
 
             <div className="space-y-3">

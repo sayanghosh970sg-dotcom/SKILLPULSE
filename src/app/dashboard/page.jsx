@@ -16,7 +16,8 @@ import {
   CheckCircle2,
   AlertCircle,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Code2
 } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -26,6 +27,7 @@ export default function DashboardPage() {
     { id: 'overview', name: 'Overview', icon: LayoutDashboard },
     { id: 'intelligence', name: 'Skill Intelligence', icon: TrendingUp, href: '/skill-intelligence' },
     { id: 'analyzer', name: 'Skill Gap Analyzer', icon: Target, href: '/skill-gap-analyzer' },
+    { id: 'practice', name: 'Company Practice', icon: Code2, href: '/practice' },
     { id: 'roadmap', name: 'Career Roadmap', icon: Compass, href: '/career-roadmap' },
     { id: 'curriculum', name: 'Curriculum Simulator', icon: GraduationCap, href: '/training-curriculum' },
     { id: 'reports', name: 'Reports & Downloads', icon: FileText },

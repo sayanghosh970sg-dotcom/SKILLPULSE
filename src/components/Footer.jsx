@@ -34,6 +34,7 @@ export default function Footer() {
             <ul className="space-y-2 text-xs">
               <li><Link href="/skill-intelligence" className="hover:text-cyan-400 transition-colors">Skill Intelligence</Link></li>
               <li><Link href="/skill-gap-analyzer" className="hover:text-cyan-400 transition-colors">Skill Gap Analyzer</Link></li>
+              <li><Link href="/practice" className="hover:text-cyan-400 transition-colors">Company & Role Practice</Link></li>
               <li><Link href="/career-roadmap" className="hover:text-cyan-400 transition-colors">Career Roadmaps</Link></li>
               <li><Link href="/training-curriculum" className="hover:text-cyan-400 transition-colors">Curriculum Simulator</Link></li>
               <li><Link href="/government" className="hover:text-cyan-400 transition-colors">Regional Insights (States & Districts)</Link></li>
